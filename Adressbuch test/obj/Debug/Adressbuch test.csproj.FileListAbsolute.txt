@@ -1,0 +1,21 @@
+C:\Users\OvSchleppegrell\source\repos\Adressbuch test\Adressbuch test\obj\Debug\Adressbuch test.csproj.AssemblyReference.cache
+C:\Users\OvSchleppegrell\source\repos\Adressbuch test\Adressbuch test\obj\Debug\AddEdit.g.cs
+C:\Users\OvSchleppegrell\source\repos\Adressbuch test\Adressbuch test\obj\Debug\MainWindow.g.cs
+C:\Users\OvSchleppegrell\source\repos\Adressbuch test\Adressbuch test\obj\Debug\People.g.cs
+C:\Users\OvSchleppegrell\source\repos\Adressbuch test\Adressbuch test\obj\Debug\App.g.cs
+C:\Users\OvSchleppegrell\source\repos\Adressbuch test\Adressbuch test\obj\Debug\Adressbuch test_MarkupCompile.cache
+C:\Users\OvSchleppegrell\source\repos\Adressbuch test\Adressbuch test\obj\Debug\Adressbuch test_MarkupCompile.lref
+C:\Users\OvSchleppegrell\source\repos\Adressbuch test\Adressbuch test\bin\Debug\Adressbuch test.exe.config
+C:\Users\OvSchleppegrell\source\repos\Adressbuch test\Adressbuch test\bin\Debug\Adressbuch test.exe
+C:\Users\OvSchleppegrell\source\repos\Adressbuch test\Adressbuch test\bin\Debug\Adressbuch test.pdb
+C:\Users\OvSchleppegrell\source\repos\Adressbuch test\Adressbuch test\obj\Debug\AddEdit.baml
+C:\Users\OvSchleppegrell\source\repos\Adressbuch test\Adressbuch test\obj\Debug\MainWindow.baml
+C:\Users\OvSchleppegrell\source\repos\Adressbuch test\Adressbuch test\obj\Debug\People.baml
+C:\Users\OvSchleppegrell\source\repos\Adressbuch test\Adressbuch test\obj\Debug\Adressbuch test.g.resources
+C:\Users\OvSchleppegrell\source\repos\Adressbuch test\Adressbuch test\obj\Debug\Adressbuch_test.Properties.Resources.resources
+C:\Users\OvSchleppegrell\source\repos\Adressbuch test\Adressbuch test\obj\Debug\Adressbuch test.csproj.GenerateResource.cache
+C:\Users\OvSchleppegrell\source\repos\Adressbuch test\Adressbuch test\obj\Debug\Adressbuch test.csproj.CoreCompileInputs.cache
+C:\Users\OvSchleppegrell\source\repos\Adressbuch test\Adressbuch test\obj\Debug\Adressbuch test.exe
+C:\Users\OvSchleppegrell\source\repos\Adressbuch test\Adressbuch test\obj\Debug\Adressbuch test.pdb
+C:\Users\OvSchleppegrell\source\repos\Adressbuch test\Adressbuch test\obj\Debug\Kalendar.g.cs
+C:\Users\OvSchleppegrell\source\repos\Adressbuch test\Adressbuch test\obj\Debug\Kalendar.baml

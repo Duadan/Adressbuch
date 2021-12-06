@@ -1,0 +1,44 @@
+﻿<Window x:Class="Adressbuch_test.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Adressbuch_test"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75" />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <StackPanel Background="LightBlue" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4">
+            <Label Content="Titel (Adressbuch von -Name-)" FontSize="20" HorizontalAlignment="Left" />
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="3" Orientation="Horizontal">
+            <TextBox x:Name="TxtSearch" Text="suchen... " Width="100" Height="35"></TextBox>
+            <Button x:Name="BtnSearch" Content="Suchen" HorizontalAlignment="Right" Click="BtnSearch_Click" Height="35"></Button>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.RowSpan="3" Grid.Column="0">
+            <StackPanel Orientation="Horizontal" Height="25">
+                <ToolBar>
+                <Button x:Name="BtnAdd" Content="Hinzufügen" Click="BtnAdd_Click"/>
+                <Button x:Name="BtnDate" Content="Kalender" Click="BtnDate_Click"/>
+                <Button x:Name="BtnDel" Content="Löschen" Click="BtnDel_Click"/>
+                </ToolBar>
+            </StackPanel>
+            <Button x:Name="Btnppl" Content="leute" Click="Btnppl_Click"/>
+            <ListBox x:Name="ListNames" Height="316"></ListBox>
+        </StackPanel>
+        <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="3">
+            <ContentControl x:Name="TheGrid"/>
+        </Grid>
+    </Grid>
+</Window>
