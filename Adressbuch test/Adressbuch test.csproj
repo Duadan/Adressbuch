@@ -58,6 +58,7 @@
     <Compile Include="Kalendar.xaml.cs">
       <DependentUpon>Kalendar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LocalList.cs" />
     <Compile Include="People.xaml.cs">
       <DependentUpon>People.xaml</DependentUpon>
     </Compile>

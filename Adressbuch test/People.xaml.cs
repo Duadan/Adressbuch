@@ -21,37 +21,33 @@ namespace Adressbuch_test
     /// </summary>
     public partial class People : UserControl
     {
-        private static string filepath = "C:\\Users\\OvSchleppegrell\\source\\repos\\Adressbuch test\\Liste.csv";
-
-        public People()
+        //private static string filepath = "C:\\Users\\OvSchleppegrell\\source\\repos\\Adressbuch test\\Liste.csv";
+        LocalList src;
+        ListBox ListNames;
+        int index = 0;
+        public People(LocalList src, ListBox ListNames)
         {
             InitializeComponent();
-            try
+            this.src = src;
+            this.ListNames = ListNames;
+            if (ListNames.SelectedItem != null)
             {
-                using (StreamReader reader = new StreamReader(filepath))//noch auf Liste beziehen!
-                {
-                    while (!reader.EndOfStream)
-                    {
-                        string[] tmp = reader.ReadLine().Split(';');
-                        NickL.Content=tmp[0];
-                        FirstL.Content = tmp[1];
-                        NameL.Content = tmp[2];
-                        AdressL.Content = tmp[3] + "\n" + tmp[4] + "\n" + tmp[5];
-                        TelNrL.Content = tmp[6];
-                        EmailL.Content = tmp[7];
-                    }
-                }
+                index= ListNames.SelectedIndex;
+                string[] tmp = src.contacts[index];
+                NickL.Content = tmp[0];
+                FirstL.Content = tmp[1];
+                NameL.Content = tmp[2];
+                AdressL.Content = tmp[3] + "\n" + tmp[4] + "\n" + tmp[5];
+                TelNrL.Content = tmp[6];
+                EmailL.Content = tmp[7];
             }
-            catch (Exception f)
-            {
-                MessageBox.Show(f.Message, "Fehler", MessageBoxButton.OKCancel, MessageBoxImage.Error);
-            }
+
         }
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            AddEdit edit = new AddEdit();
+            AddEdit edit = new AddEdit(src, ListNames, index);
             PplCtrl.Content =edit;
-        }        
+        }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Adressbuch_test"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="800">
+        Title="MainWindow" Height="500" Width="800" Closing="SaveStuff">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="75" />
@@ -19,7 +19,7 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <StackPanel Background="LightBlue" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4">
+        <StackPanel Background="#6FA8DC" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4">
             <Label Content="Titel (Adressbuch von -Name-)" FontSize="20" HorizontalAlignment="Left" />
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="3" Orientation="Horizontal">
@@ -34,8 +34,7 @@
                 <Button x:Name="BtnDel" Content="Löschen" Click="BtnDel_Click"/>
                 </ToolBar>
             </StackPanel>
-            <Button x:Name="Btnppl" Content="leute" Click="Btnppl_Click"/>
-            <ListBox x:Name="ListNames" Height="316"></ListBox>
+            <ListBox x:Name="ListNames" MouseDoubleClick="ListNames_MouseDoubleClick"></ListBox>
         </StackPanel>
         <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="3">
             <ContentControl x:Name="TheGrid"/>
