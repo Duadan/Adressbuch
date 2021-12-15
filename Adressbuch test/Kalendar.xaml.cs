@@ -24,5 +24,10 @@ namespace Adressbuch_test
         {
             InitializeComponent();
         }
+
+        private void NoCal(object sender, ContextMenuEventArgs e)
+        {
+
+        }
     }
 }

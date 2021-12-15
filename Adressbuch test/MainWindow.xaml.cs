@@ -19,7 +19,7 @@ namespace Adressbuch_test
     /// <summary>
     /// Interaktionslogik für MainWindow.xaml
     /// </summary>
-    /// sortbydate, search, image
+    /// image, schön machen
     //class DBC
     //{
     //    private static string filepath = "C:\\Users\\source\\repos\\Adressbuch test\\liste.csv";
@@ -45,33 +45,38 @@ namespace Adressbuch_test
     //        return ppls;
     //    }
     //}
-    
+
 
 
     public partial class MainWindow : Window
     {
-        LocalList src= new LocalList();
-        People nameList;
+        LocalList src = new LocalList();
+        //People nameList;
+        int calendar;
 
-        private static string filepath = "C:\\Users\\OvSchleppegrell\\source\\repos\\Adressbuch test\\Liste.csv";
+        //private static string filepath = "C:\\Users\\OvSchleppegrell\\source\\repos\\Adressbuch test\\Liste.csv";
         public MainWindow()
         {
             InitializeComponent();
+            
             Kalendar cal = new Kalendar();
             TheGrid.Content = cal;
-            nameList = new People(src, ListNames);
-            this.src.MakeList();//foreach (string[] str in contacts)List bla.add = str[0] <- sollte gehen, aber wäre indirekt, was meh
-            foreach (string[] s in src.contacts)
-            {
-                ListNames.Items.Add(s[0]);
-            }
+            calendar = 2;
+            src.MakeList();
+            //foreach (string[] s in src.contacts)
+            //{
+            //    ListNames.Items.Add(s[0]);
+            //}
+            src.CalenderDiff(ListNames);
+            //nameList = new People(src, ListNames,calendar);
+
             //ListNames.ItemsSource = src.contacts;//hier noch auf ersten string der Listeneinträge (foreach?)
             //ListNames.ItemsSource = (System.Collections.IEnumerable)src;
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            AddEdit add = new AddEdit(src, ListNames,-1);
+            AddEdit add = new AddEdit(src, ListNames, -1, calendar);
             TheGrid.Content = add;
         }
 
@@ -94,50 +99,42 @@ namespace Adressbuch_test
             }
         }
 
-            private void BtnDate_Click(object sender, RoutedEventArgs e)
+        private void BtnDate_Click(object sender, RoutedEventArgs e)
         {
+            calendar = 2;
             Kalendar cal = new Kalendar();
             TheGrid.Content = cal;
-            //DateTime today = DateTime.Today;
-            //int j = 0;
-            //foreach (string[] i in src.contacts)
-            //{
-            //    int age = today.Year - Convert.ToDateTime(src.contacts[j][8]).Year;
-            //    TimeSpan time = Convert.ToDateTime(src.contacts[8]).AddYears(age + 1) - today;
-            //    j++;
-            //}
+            src.CalenderDiff(ListNames);
         }
 
         private void BtnSearch_Click(object sender, RoutedEventArgs e)
         {
-            //src.contacts.BinarySearch(??);
-            //src.contacts.Find(x => x.contains(TxtSearch.Text));
-            //ListNames.IsTextSearchEnabled = true;
-            //IEnumerable<string> srch =
-            //    from string[] a in src.contacts
-            //    where a.Contains(TxtSearch.Text)
-            //    select a[0];
-            //foreach(string b in srch)
-            //{
-            //    //ListNames.Items.
-            //}
+            calendar = 3;
+            src.SearchFunktion(ListNames, TxtSearch.Text, calendar);
         }
 
-        private void SaveStuff(object sender, System.ComponentModel.CancelEventArgs e)
+        private void Closing_SaveStuff(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            File.Delete(filepath);
+            src.SaveStuff();
+        }
 
-            using (StreamWriter writer = File.AppendText(filepath))
+        private void BtnPpl_Click(object sender, RoutedEventArgs e)
+        {
+            calendar = 1;
+            ListNames.Items.Clear();
+            foreach (string[] s in src.contacts)
             {
-                foreach (string[] s in src.contacts)
-                    writer.WriteLine(s[0] + ";" + s[1] + ";" + s[2] + ";" + s[3] + ";" + s[4] + ";" + s[5] + ";" + s[6] + ";" + s[7] + ";" + s[8]);
+                ListNames.Items.Add(s[0]);
             }
         }
 
-        private void ListNames_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void ListNames_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            People ppl = new People(src, ListNames);
-            TheGrid.Content = ppl;
+            if (ListNames.SelectedIndex >= 0)
+            {
+                People ppl = new People(src, ListNames, calendar);
+                TheGrid.Content = ppl;
+            }
         }
     }
 }

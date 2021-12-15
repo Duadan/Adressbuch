@@ -25,29 +25,58 @@ namespace Adressbuch_test
         LocalList src;
         ListBox ListNames;
         int index = 0;
-        public People(LocalList src, ListBox ListNames)
+        int cal;
+        public People(LocalList src, ListBox ListNames, int mode)
         {
             InitializeComponent();
             this.src = src;
             this.ListNames = ListNames;
-            if (ListNames.SelectedItem != null)
+            this.cal = mode;
+            string[] tmp;
+            if (ListNames.SelectedItem == null)
             {
-                index= ListNames.SelectedIndex;
-                string[] tmp = src.contacts[index];
-                NickL.Content = tmp[0];
-                FirstL.Content = tmp[1];
-                NameL.Content = tmp[2];
-                AdressL.Content = tmp[3] + "\n" + tmp[4] + "\n" + tmp[5];
-                TelNrL.Content = tmp[6];
-                EmailL.Content = tmp[7];
+                ListNames.SelectedIndex = 0;
             }
+            index = ListNames.SelectedIndex;
+            switch (mode)
+            {
+                case 1:
+                    tmp = src.contacts[index];
+                    NickL.Content = tmp[0];
+                    FirstL.Content = tmp[1];
+                    NameL.Content = tmp[2];
+                    AdressL.Content = tmp[3] + "\n" + tmp[4] + "\n" + tmp[5];
+                    TelNrL.Content = tmp[6];
+                    EmailL.Content = tmp[7];
+                    break;
 
+
+                case 2:
+                    tmp = src.five[index];
+                    NickL.Content = tmp[0];
+                    FirstL.Content = tmp[1];
+                    NameL.Content = tmp[2];
+                    AdressL.Content = tmp[3] + "\n" + tmp[4] + "\n" + tmp[5];
+                    TelNrL.Content = tmp[6];
+                    EmailL.Content = tmp[7];
+                    break;
+
+                case 3:
+                    tmp = src.tmp[index];
+                    NickL.Content = tmp[0];
+                    FirstL.Content = tmp[1];
+                    NameL.Content = tmp[2];
+                    AdressL.Content = tmp[3] + "\n" + tmp[4] + "\n" + tmp[5];
+                    TelNrL.Content = tmp[6];
+                    EmailL.Content = tmp[7];
+                    break;
+            }
         }
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            AddEdit edit = new AddEdit(src, ListNames, index);
-            PplCtrl.Content =edit;
+            AddEdit edit = new AddEdit(src, ListNames, index, cal);
+            PplCtrl.Content = edit;
         }
     }
 }

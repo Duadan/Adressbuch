@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Adressbuch_test"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="800" Closing="SaveStuff">
+        Title="MainWindow" Height="500" Width="800" Closing="Closing_SaveStuff">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="75" />
@@ -14,7 +14,6 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
             <ColumnDefinition />
             <ColumnDefinition />
             <ColumnDefinition />
@@ -29,14 +28,15 @@
         <StackPanel Grid.Row="1" Grid.RowSpan="3" Grid.Column="0">
             <StackPanel Orientation="Horizontal" Height="25">
                 <ToolBar>
-                <Button x:Name="BtnAdd" Content="Hinzufügen" Click="BtnAdd_Click"/>
-                <Button x:Name="BtnDate" Content="Kalender" Click="BtnDate_Click"/>
-                <Button x:Name="BtnDel" Content="Löschen" Click="BtnDel_Click"/>
+                    <Button x:Name="BtnPpl" Content="Kontakte" Click="BtnPpl_Click"/>
+                    <Button x:Name="BtnDate" Content="Kalender" Click="BtnDate_Click"/>
+                    <Button x:Name="BtnAdd" Content="Hinzufügen" Click="BtnAdd_Click"/>
+                    <Button x:Name="BtnDel" Content="Löschen" Click="BtnDel_Click"/>
                 </ToolBar>
             </StackPanel>
-            <ListBox x:Name="ListNames" MouseDoubleClick="ListNames_MouseDoubleClick"></ListBox>
+            <ListBox x:Name="ListNames" SelectionChanged="ListNames_SelectionChanged"></ListBox>
         </StackPanel>
-        <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="3">
+        <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="3">
             <ContentControl x:Name="TheGrid"/>
         </Grid>
     </Grid>

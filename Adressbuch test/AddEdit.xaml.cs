@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using Microsoft.Win32;
 
 namespace Adressbuch_test
 {
@@ -25,10 +26,12 @@ namespace Adressbuch_test
         private static string filepath = "C:\\Users\\OvSchleppegrell\\source\\repos\\Adressbuch test\\Liste.csv";
         LocalList src;
         ListBox ListNames;
-        int index;
-        public AddEdit(LocalList src, ListBox ListNames, int index)
+        int index, mode;
+        //OpenFileDialog pic;
+        public AddEdit(LocalList src, ListBox ListNames, int index, int mode)
         {
             InitializeComponent();
+            this.mode = mode;
             this.src = src;
             this.ListNames = ListNames;
             this.index = index;
@@ -43,19 +46,48 @@ namespace Adressbuch_test
                 Tel.Text = src.contacts[index][6];
                 Mail.Text = src.contacts[index][7];
                 BDate.Text = src.contacts[index][8];
+                //if (src.contacts[index][10]!=null)
+                //{
+                //    img.Source = new BitmapImage(new Uri(src.contacts[index][10]));
+                //}
             }
         }
 
 
         private void Done_Click(object sender, RoutedEventArgs e)
         {
-            bool isNumberP, isNumberT;
+            int isEmail=0;
+            bool isNumberP, isNumberT, isNumberD;
             isNumberP = int.TryParse(PLZ.Text, out int p);
             isNumberT = int.TryParse(Tel.Text, out int t);
+            isNumberD = DateTime.TryParse(BDate.Text, out DateTime d);
+            foreach (char c in Mail.Text)
+            {
+                if (c == '@')
+                {
+                    if (isEmail == 0)
+                    {
+                        isEmail += 1;
+                    }
+                    else
+                    {
+                        isEmail += 2;
+                    }
+                }
+                if (isEmail >= 1)
+                {
+                    if (c == '.')
+                    {
+                        isEmail += 1;
+                    }
+                }
+            }
             //StreamReader reader = new StreamReader(filepath);
-            string ppls = NickNo.Text + ";" + FirstName.Text + ";" + NameB.Text + ";" + Street.Text + ";" + Town.Text + ";" + PLZ.Text + ";" + Tel.Text + ";" + Mail.Text + ";" + BDate.Text;
+            string ppls = NickNo.Text + ";" + FirstName.Text + ";" + NameB.Text + ";" + Street.Text + ";" + Town.Text + ";" + PLZ.Text + ";" + Tel.Text + ";" + Mail.Text + ";" + BDate.Text + ";" + Convert.ToString(d.DayOfYear)/*+";"+pic.FileName*/;
             //if string[] in filepath go on, sonst fehlermeldung
             //reader = null;
+
+
             if (isNumberP == false)
             {
                 PLZ.Text = "Fehler! Bitte eine PostleitZAHL eingeben";
@@ -64,9 +96,25 @@ namespace Adressbuch_test
             {
                 Tel.Text = "Fehler! Bitte eine TelefonNUMMER eingeben";
             }
+            if (isNumberD == false)
+            {
+                BDate.Text = "Bitte gültiges Datum eingeben!";
+            }
+            if (isEmail != 2)
+            {
+                Mail.Text = "Ungültig! Bitte eine gültige Emailadresse eingeben.";
+            }
+
             else if (index < 0)
             {
-                if (isNumberT == isNumberP == true)
+                foreach (string[] repeat in src.contacts)
+                {
+                    if (NickNo.Text == repeat[0])
+                    {
+                        NickNo.Text = "dieser Kontakt existiert bereits, zum bearbeiten Kontakt auswählen und bearbeiten";
+                    }
+                }
+                if (isNumberT == isNumberP == isNumberD == true&&isEmail==2)
                 {
                     src.AddToList(ppls.Split(';'));
                     ListNames.Items.Add(ppls.Split(';')[0]);
@@ -78,21 +126,33 @@ namespace Adressbuch_test
 
                     MessageBox.Show("Kontakt wurde hinzugefügt", "yay", MessageBoxButton.OK, MessageBoxImage.Asterisk);
 
-                    People edit = new People(src, ListNames);
+                    People edit = new People(src, ListNames, mode);
                     AddEditCtrl.Content = edit;
                 }
+
             }
-            else if (isNumberT==isNumberP==true&&index >= 0)
+            else if (isNumberT == isNumberP == isNumberD == true && index >= 0&&isEmail==2)
             {
                 src.EditInList(ppls.Split(';'), index, ListNames);
-                People edit = new People(src, ListNames);
+                People edit = new People(src, ListNames,mode);
                 AddEditCtrl.Content = edit;
             }
         }
 
+        private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            //pic = new OpenFileDialog();
+            //pic.Title = "Wählen Sie ein Profilbild aus";
+            //pic.Filter = "Grafiken|*.jpg;*.jpeg;*.png;*.bmp";
+            //if (pic.ShowDialog()== true)
+            //{
+            //    img.Source = new BitmapImage(new Uri(pic.FileName));
+            //}
+        }
+
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            People edit = new People(src, ListNames);
+            People edit = new People(src, ListNames,mode);
             AddEditCtrl.Content = edit;
         }
     }
