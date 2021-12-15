@@ -23,18 +23,25 @@ namespace Adressbuch_test
 
     public partial class AddEdit : UserControl
     {
-        private static string filepath = "C:\\Users\\OvSchleppegrell\\source\\repos\\Adressbuch test\\Liste.csv";
-        LocalList src;
-        ListBox ListNames;
-        int index, mode;
-        //OpenFileDialog pic;
-        public AddEdit(LocalList src, ListBox ListNames, int index, int mode)
+        private static readonly string filepath = "C:\\Users\\OvSchleppegrell\\source\\repos\\Adressbuch test\\Liste.csv";
+        private LocalList Source { get; set; }
+        private ListBox ListNames { get; set; }
+        private int Index { get; set; }
+        private int Mode { get; set; }
+        private OpenFileDialog Picture { get; set; }
+        private string FindPic { get; set; }
+
+        public AddEdit(LocalList src, ListBox listNames, int index, int mode)
         {
             InitializeComponent();
-            this.mode = mode;
-            this.src = src;
-            this.ListNames = ListNames;
-            this.index = index;
+            Mode = mode;
+            Source = src;
+            ListNames = listNames;
+            Index = index;
+            if (index >= 0 && src.contacts[index].Length >= 11)
+            {
+                FindPic = src.contacts[index][10];
+            }
             if (index >= 0)
             {
                 NickNo.Text = src.contacts[index][0];
@@ -46,17 +53,27 @@ namespace Adressbuch_test
                 Tel.Text = src.contacts[index][6];
                 Mail.Text = src.contacts[index][7];
                 BDate.Text = src.contacts[index][8];
-                //if (src.contacts[index][10]!=null)
-                //{
-                //    img.Source = new BitmapImage(new Uri(src.contacts[index][10]));
-                //}
+                if (src.contacts[index].Length >= 11)
+                {
+                    if (src.contacts[index][10] != "")
+                    {
+                        try
+                        {
+                            img.Source = new BitmapImage(new Uri(src.contacts[index][10]));
+                        }
+                        catch (Exception f)
+                        {
+                            MessageBox.Show(f.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
             }
         }
 
 
         private void Done_Click(object sender, RoutedEventArgs e)
         {
-            int isEmail=0;
+            int isEmail = 0;
             bool isNumberP, isNumberT, isNumberD;
             isNumberP = int.TryParse(PLZ.Text, out int p);
             isNumberT = int.TryParse(Tel.Text, out int t);
@@ -83,7 +100,7 @@ namespace Adressbuch_test
                 }
             }
             //StreamReader reader = new StreamReader(filepath);
-            string ppls = NickNo.Text + ";" + FirstName.Text + ";" + NameB.Text + ";" + Street.Text + ";" + Town.Text + ";" + PLZ.Text + ";" + Tel.Text + ";" + Mail.Text + ";" + BDate.Text + ";" + Convert.ToString(d.DayOfYear)/*+";"+pic.FileName*/;
+            string ppls = NickNo.Text + ";" + FirstName.Text + ";" + NameB.Text + ";" + Street.Text + ";" + Town.Text + ";" + PLZ.Text + ";" + Tel.Text + ";" + Mail.Text + ";" + BDate.Text + ";" + Convert.ToString(d.DayOfYear) + ";" + FindPic;
             //if string[] in filepath go on, sonst fehlermeldung
             //reader = null;
 
@@ -105,18 +122,18 @@ namespace Adressbuch_test
                 Mail.Text = "Ungültig! Bitte eine gültige Emailadresse eingeben.";
             }
 
-            else if (index < 0)
+            else if (Index < 0)
             {
-                foreach (string[] repeat in src.contacts)
+                foreach (string[] repeat in Source.contacts)
                 {
                     if (NickNo.Text == repeat[0])
                     {
                         NickNo.Text = "dieser Kontakt existiert bereits, zum bearbeiten Kontakt auswählen und bearbeiten";
                     }
                 }
-                if (isNumberT == isNumberP == isNumberD == true&&isEmail==2)
+                if (isNumberT == isNumberP == isNumberD == true && isEmail == 2)
                 {
-                    src.AddToList(ppls.Split(';'));
+                    Source.AddToList(ppls.Split(';'));
                     ListNames.Items.Add(ppls.Split(';')[0]);
 
                     using (StreamWriter writer = File.AppendText(filepath))
@@ -126,33 +143,36 @@ namespace Adressbuch_test
 
                     MessageBox.Show("Kontakt wurde hinzugefügt", "yay", MessageBoxButton.OK, MessageBoxImage.Asterisk);
 
-                    People edit = new People(src, ListNames, mode);
+                    People edit = new People(Source, ListNames, 1);
                     AddEditCtrl.Content = edit;
                 }
 
             }
-            else if (isNumberT == isNumberP == isNumberD == true && index >= 0&&isEmail==2)
+            else if (isNumberT == isNumberP == isNumberD == true && Index >= 0 && isEmail == 2)
             {
-                src.EditInList(ppls.Split(';'), index, ListNames);
-                People edit = new People(src, ListNames,mode);
+                Source.EditInList(ppls.Split(';'), Index, ListNames);
+                People edit = new People(Source, ListNames, 1);
                 AddEditCtrl.Content = edit;
             }
         }
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            //pic = new OpenFileDialog();
-            //pic.Title = "Wählen Sie ein Profilbild aus";
-            //pic.Filter = "Grafiken|*.jpg;*.jpeg;*.png;*.bmp";
-            //if (pic.ShowDialog()== true)
-            //{
-            //    img.Source = new BitmapImage(new Uri(pic.FileName));
-            //}
+            Picture = new OpenFileDialog
+            {
+                Title = "Wählen Sie ein Profilbild aus",
+                Filter = "Grafiken|*.jpg;*.jpeg;*.png;*.bmp"
+            };
+            if (Picture.ShowDialog() == true)
+            {
+                img.Source = new BitmapImage(new Uri(Picture.FileName));
+                FindPic = Picture.FileName;
+            }
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            People edit = new People(src, ListNames,mode);
+            People edit = new People(Source, ListNames, Mode);
             AddEditCtrl.Content = edit;
         }
     }

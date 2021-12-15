@@ -20,45 +20,16 @@ namespace Adressbuch_test
     /// Interaktionslogik für MainWindow.xaml
     /// </summary>
     /// image, schön machen
-    //class DBC
-    //{
-    //    private static string filepath = "C:\\Users\\source\\repos\\Adressbuch test\\liste.csv";
-    //    private StreamReader reader = new StreamReader(filepath);
-    //    private StreamWriter writer = new StreamWriter(filepath);
-
-    //    public List<Ppl> GetPeople()
-    //    {
-    //        List<Ppl> ppls = new List<Ppl>();
-    //        ppls.Clear();
-    //        try
-    //        {
-    //            while (!reader.EndOfStream)
-    //            {
-    //                string[] tmp = reader.ReadLine().Split(';');
-    //                ppls.Add(new Ppl(tmp[0], tmp[1], tmp[2], Convert.ToDateTime(tmp[3]), tmp[4], tmp[7], tmp[8], tmp[9]));
-    //            }
-    //        }
-    //        catch
-    //        {
-
-    //        }
-    //        return ppls;
-    //    }
-    //}
-
-
 
     public partial class MainWindow : Window
     {
         LocalList src = new LocalList();
-        //People nameList;
-        int calendar;
+        private int calendar;
 
         //private static string filepath = "C:\\Users\\OvSchleppegrell\\source\\repos\\Adressbuch test\\Liste.csv";
         public MainWindow()
         {
             InitializeComponent();
-            
             Kalendar cal = new Kalendar();
             TheGrid.Content = cal;
             calendar = 2;
@@ -68,10 +39,6 @@ namespace Adressbuch_test
             //    ListNames.Items.Add(s[0]);
             //}
             src.CalenderDiff(ListNames);
-            //nameList = new People(src, ListNames,calendar);
-
-            //ListNames.ItemsSource = src.contacts;//hier noch auf ersten string der Listeneinträge (foreach?)
-            //ListNames.ItemsSource = (System.Collections.IEnumerable)src;
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
@@ -89,7 +56,6 @@ namespace Adressbuch_test
                 if (erm == MessageBoxResult.Yes)
                 {
                     src.DelFromList(ListNames.SelectedIndex);
-                    //TxtSearch.Text = Convert.ToString(ListNames.SelectedIndex);
                     ListNames.Items.Remove(ListNames.SelectedItem);
                 }
             }
@@ -110,7 +76,7 @@ namespace Adressbuch_test
         private void BtnSearch_Click(object sender, RoutedEventArgs e)
         {
             calendar = 3;
-            src.SearchFunktion(ListNames, TxtSearch.Text, calendar);
+            src.SearchFunktion(ListNames, TxtSearch.Text);
         }
 
         private void Closing_SaveStuff(object sender, System.ComponentModel.CancelEventArgs e)

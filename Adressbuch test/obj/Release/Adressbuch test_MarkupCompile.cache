@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\OvSchleppegrell\source\repos\Adressbuch test\Adressbuch test\obj\Debug\
+C:\Users\OvSchleppegrell\source\repos\Adressbuch test\Adressbuch test\obj\Release\
 Adressbuch_test
 none
 false
-DEBUG;TRACE
+TRACE
 C:\Users\OvSchleppegrell\source\repos\Adressbuch test\Adressbuch test\App.xaml
 4589937721
 
-10-531799232
+9310560135
 13-1505183044
 AddEdit.xaml;Kalendar.xaml;MainWindow.xaml;People.xaml;
 
-False
+True
 

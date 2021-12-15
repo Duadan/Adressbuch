@@ -116,5 +116,20 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Screenshot 2021-12-15 091143.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="MicrosoftTeams-image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Geburtstage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="hinzufügen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Löschen.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

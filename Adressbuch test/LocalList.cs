@@ -16,7 +16,7 @@ namespace Adressbuch_test
         public List<string[]> five = new List<string[]>();
         public List<string[]> tmp = new List<string[]>();
 
-        private static string filepath = "C:\\Users\\OvSchleppegrell\\source\\repos\\Adressbuch test\\Liste.csv";
+        private static readonly string filepath = "C:\\Users\\OvSchleppegrell\\source\\repos\\Adressbuch test\\Liste.csv";
         public List<string[]> contacts = new List<string[]>();
 
         public void MakeList()
@@ -102,7 +102,7 @@ namespace Adressbuch_test
                 ListNames.Items.Add(five[i][8] + " " + five[i][0]);
             }
         }
-        public void SearchFunktion(ListBox ListNames, string srchTxt, int srch)
+        public void SearchFunktion(ListBox ListNames, string srchTxt)
         {
             tmp.Clear();
             ListNames.Items.Clear();
@@ -130,7 +130,14 @@ namespace Adressbuch_test
             using (StreamWriter writer = File.AppendText(filepath))
             {
                 foreach (string[] s in contacts)
-                    writer.WriteLine(s[0] + ";" + s[1] + ";" + s[2] + ";" + s[3] + ";" + s[4] + ";" + s[5] + ";" + s[6] + ";" + s[7] + ";" + s[8] + ";" + s[9]);
+                    if (s.Length >= 11)
+                    {
+                        writer.WriteLine(s[0] + ";" + s[1] + ";" + s[2] + ";" + s[3] + ";" + s[4] + ";" + s[5] + ";" + s[6] + ";" + s[7] + ";" + s[8] + ";" + s[9] + ";" + s[10]);
+                    }
+                    else
+                    {
+                        writer.WriteLine(s[0] + ";" + s[1] + ";" + s[2] + ";" + s[3] + ";" + s[4] + ";" + s[5] + ";" + s[6] + ";" + s[7] + ";" + s[8] + ";" + s[9]);
+                    }
             }
         }
     }

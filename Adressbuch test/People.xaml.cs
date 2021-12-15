@@ -22,16 +22,16 @@ namespace Adressbuch_test
     public partial class People : UserControl
     {
         //private static string filepath = "C:\\Users\\OvSchleppegrell\\source\\repos\\Adressbuch test\\Liste.csv";
-        LocalList src;
-        ListBox ListNames;
-        int index = 0;
-        int cal;
+        private LocalList Source { get; set; }
+        private ListBox ListNames { get; set; }
+        private int index = 0;
+        private int Cal { get; set; }
         public People(LocalList src, ListBox ListNames, int mode)
         {
             InitializeComponent();
-            this.src = src;
+            Source = src;
             this.ListNames = ListNames;
-            this.cal = mode;
+            Cal = mode;
             string[] tmp;
             if (ListNames.SelectedItem == null)
             {
@@ -48,6 +48,11 @@ namespace Adressbuch_test
                     AdressL.Content = tmp[3] + "\n" + tmp[4] + "\n" + tmp[5];
                     TelNrL.Content = tmp[6];
                     EmailL.Content = tmp[7];
+                    try
+                    {
+                        Pic.Source = new BitmapImage(new Uri(tmp[10]));
+                    }
+                    catch { }
                     break;
 
 
@@ -59,6 +64,11 @@ namespace Adressbuch_test
                     AdressL.Content = tmp[3] + "\n" + tmp[4] + "\n" + tmp[5];
                     TelNrL.Content = tmp[6];
                     EmailL.Content = tmp[7];
+                    try
+                    {
+                        Pic.Source = new BitmapImage(new Uri(tmp[10]));
+                    }
+                    catch { }
                     break;
 
                 case 3:
@@ -69,13 +79,18 @@ namespace Adressbuch_test
                     AdressL.Content = tmp[3] + "\n" + tmp[4] + "\n" + tmp[5];
                     TelNrL.Content = tmp[6];
                     EmailL.Content = tmp[7];
+                    try
+                    {
+                        Pic.Source = new BitmapImage(new Uri(tmp[10]));
+                    }
+                    catch { }
                     break;
             }
         }
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            AddEdit edit = new AddEdit(src, ListNames, index, cal);
+            AddEdit edit = new AddEdit(Source, ListNames, index, Cal);
             PplCtrl.Content = edit;
         }
     }

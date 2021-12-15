@@ -8,26 +8,28 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <ContentControl x:Name="AddEditCtrl">
         <Grid>
-        <Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="100"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Image x:Name="img" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-            <Label Content="Bild" Height="200" FontSize="30"  />
-            <StackPanel Grid.Row="0" Grid.Column="1">
+            <Image x:Name="img" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" MouseLeftButtonDown="Image_MouseLeftButtonDown" Source="Screenshot 2021-12-15 091143.png" />
+            <!--<Label Content="Bild" Height="200" FontSize="30"  />-->
+            <StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="2">
                 <Label Content="Nickname/KundenNr."/>
                 <TextBox x:Name="NickNo" Text="Nick/KundenNr."/>
                 <Label Content="Vorname"/>
                 <TextBox x:Name="FirstName" Text="Name"/>
                 <Label Content="Name"/>
                 <TextBox x:Name="NameB" Text="Nachame" Grid.Column="1" Grid.Row="1"/>
+                <Label Content="Geburtsdatum"/>
+                <DatePicker Name="BDate"/>
             </StackPanel>
-            <StackPanel Grid.Row="1" Grid.Column="1">
+            <StackPanel Grid.Row="2" Grid.Column="0">
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Straße"/>
                     <TextBox x:Name="Street" Text="Straße und HausNr"/>
@@ -49,13 +51,10 @@
                     <TextBox x:Name="Mail" Text="Email@wasauchimmer.eingeben"/>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Grid.Row="2" Grid.Column="1">
-                <Label Content="Geburtsdatum"/>
-                <DatePicker Name="BDate"/>
+            <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom">
                 <Button x:Name="Done" Content="Bestätigen" Click="Done_Click"/>
                 <Button x:Name="Cancel" Content="Abbrechen" Click="Cancel_Click"/>
             </StackPanel>
         </Grid>
     </ContentControl>
-
 </UserControl>

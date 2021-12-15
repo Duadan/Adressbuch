@@ -19,19 +19,27 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <StackPanel Background="#6FA8DC" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4">
-            <Label Content="Titel (Adressbuch von -Name-)" FontSize="20" HorizontalAlignment="Left" />
+            <Label Content="Adressbuch" FontSize="20" HorizontalAlignment="Left" />
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="3" Orientation="Horizontal">
             <TextBox x:Name="TxtSearch" Text="suchen... " Width="100" Height="35"></TextBox>
             <Button x:Name="BtnSearch" Content="Suchen" HorizontalAlignment="Right" Click="BtnSearch_Click" Height="35"></Button>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.RowSpan="3" Grid.Column="0">
-            <StackPanel Orientation="Horizontal" Height="25">
+            <StackPanel Orientation="Horizontal" Height="35">
                 <ToolBar>
-                    <Button x:Name="BtnPpl" Content="Kontakte" Click="BtnPpl_Click"/>
-                    <Button x:Name="BtnDate" Content="Kalender" Click="BtnDate_Click"/>
-                    <Button x:Name="BtnAdd" Content="Hinzufügen" Click="BtnAdd_Click"/>
-                    <Button x:Name="BtnDel" Content="Löschen" Click="BtnDel_Click"/>
+                    <Button x:Name="BtnPpl" Click="BtnPpl_Click">
+                        <Image Source="MicrosoftTeams-image.png" />
+                    </Button>
+                    <Button x:Name="BtnDate" Click="BtnDate_Click">
+                        <Image Source="Geburtstage.png"/>
+                    </Button>
+                    <Button x:Name="BtnAdd" Click="BtnAdd_Click">
+                        <Image Source="hinzufügen.png"/>
+                    </Button>
+                    <Button x:Name="BtnDel" Click="BtnDel_Click">
+                        <Image Source="Löschen.png" />
+                    </Button>
                 </ToolBar>
             </StackPanel>
             <ListBox x:Name="ListNames" SelectionChanged="ListNames_SelectionChanged"></ListBox>
