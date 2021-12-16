@@ -23,7 +23,7 @@ namespace Adressbuch_test
 
     public partial class AddEdit : UserControl
     {
-        private static readonly string filepath = "C:\\Users\\OvSchleppegrell\\source\\repos\\Adressbuch test\\Liste.csv";
+        private static readonly string filepath = AppDomain.CurrentDomain.BaseDirectory + "\\Liste.csv";
         private LocalList Source { get; set; }
         private ListBox ListNames { get; set; }
         private int Index { get; set; }

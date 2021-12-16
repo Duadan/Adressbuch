@@ -19,14 +19,13 @@ namespace Adressbuch_test
     /// <summary>
     /// Interaktionslogik für MainWindow.xaml
     /// </summary>
-    /// image, schön machen
+    /// schön machen
 
     public partial class MainWindow : Window
     {
         LocalList src = new LocalList();
         private int calendar;
 
-        //private static string filepath = "C:\\Users\\OvSchleppegrell\\source\\repos\\Adressbuch test\\Liste.csv";
         public MainWindow()
         {
             InitializeComponent();
@@ -34,10 +33,6 @@ namespace Adressbuch_test
             TheGrid.Content = cal;
             calendar = 2;
             src.MakeList();
-            //foreach (string[] s in src.contacts)
-            //{
-            //    ListNames.Items.Add(s[0]);
-            //}
             src.CalenderDiff(ListNames);
         }
 

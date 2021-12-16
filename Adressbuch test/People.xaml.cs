@@ -21,7 +21,6 @@ namespace Adressbuch_test
     /// </summary>
     public partial class People : UserControl
     {
-        //private static string filepath = "C:\\Users\\OvSchleppegrell\\source\\repos\\Adressbuch test\\Liste.csv";
         private LocalList Source { get; set; }
         private ListBox ListNames { get; set; }
         private int index = 0;

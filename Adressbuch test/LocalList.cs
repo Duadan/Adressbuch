@@ -16,7 +16,7 @@ namespace Adressbuch_test
         public List<string[]> five = new List<string[]>();
         public List<string[]> tmp = new List<string[]>();
 
-        private static readonly string filepath = "C:\\Users\\OvSchleppegrell\\source\\repos\\Adressbuch test\\Liste.csv";
+        private static readonly string filepath = AppDomain.CurrentDomain.BaseDirectory+"\\Liste.csv";
         public List<string[]> contacts = new List<string[]>();
 
         public void MakeList()
