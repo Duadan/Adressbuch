@@ -48,8 +48,7 @@ namespace Adressbuch_test
         {
             if (ListNames.SelectedItem != null)
             {
-                MessageBoxResult erm = MessageBox.Show("Möchten sie den Eintrag wirklich löschen?", "Löschen", button: MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (erm == MessageBoxResult.Yes)
+                if (MessageBox.Show("Möchten sie den Eintrag wirklich löschen?", "Löschen", button: MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     src.DelFromList(ppl.NickL.Content.ToString());
                     ListNames.Items.Remove(ListNames.SelectedItem);

@@ -132,11 +132,11 @@ namespace Adressbuch_test
             ListNames.Items.Clear();
             foreach(string[] a in contacts)
             {
-                foreach(string b in a)
+                for(int i=0;i<8; i++)
                 {
-                    if (b.ToLower().Contains(srchTxt.ToLower()))
+                    if (a[i].ToLower().Contains(srchTxt.ToLower()))
                     {
-                        foreach(string c in ListNames.Items)
+                        foreach (string c in ListNames.Items)
                         {
                             if (a[0] == c)
                             {
@@ -147,13 +147,35 @@ namespace Adressbuch_test
                                 noRepeat = true;
                             }
                         }
-                        if (noRepeat == true)
+                        if (noRepeat)
                         {
                             ListNames.Items.Add(a[0]);
                             tmp.Add(a);
                         }
                     }
                 }
+                //foreach(string b in a)
+                //{
+                //    if (b.ToLower().Contains(srchTxt.ToLower()))
+                //    {
+                //        foreach(string c in ListNames.Items)
+                //        {
+                //            if (a[0] == c)
+                //            {
+                //                noRepeat = false;
+                //            }
+                //            else
+                //            {
+                //                noRepeat = true;
+                //            }
+                //        }
+                //        if (noRepeat)
+                //        {
+                //            ListNames.Items.Add(a[0]);
+                //            tmp.Add(a);
+                //        }
+                //    }
+                //}
             }
         }
         //public void ShowBDay()

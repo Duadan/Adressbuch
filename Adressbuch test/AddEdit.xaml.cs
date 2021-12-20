@@ -56,6 +56,8 @@ namespace Adressbuch_test
                         try
                         {
                             NickNo.Text = arrg[0];
+                            NickNo.IsReadOnly = true;
+                            NickLabel.Content = "Nickname/KundenNr. Kann nicht verändert werden";
                             FirstName.Text = arrg[1];
                             NameB.Text = arrg[2];
                             Street.Text = arrg[3];
@@ -89,7 +91,7 @@ namespace Adressbuch_test
         private void Done_Click(object sender, RoutedEventArgs e)
         {
             int isEmail = 0;
-            bool isNumberP, isNumberT, isNumberD;
+            bool isNumberP, isNumberT, isNumberD, isNew=true;
             isNumberP = int.TryParse(PLZ.Text, out int p);
             isNumberT = int.TryParse(Tel.Text, out int t);
             isNumberD = DateTime.TryParse(BDate.Text, out DateTime d);
@@ -144,9 +146,10 @@ namespace Adressbuch_test
                     if (NickNo.Text == repeat[0])
                     {
                         NickNo.Text = "dieser Kontakt existiert bereits, zum bearbeiten Kontakt auswählen und bearbeiten";
+                        isNew = false;
                     }
                 }
-                if (isNumberT == isNumberP == isNumberD == true && isEmail == 2)
+                if (isNumberT == isNumberP == isNumberD ==isNew== true && isEmail == 2)
                 {
                     Source.AddToList(ppls.Split(';'));
                     if (Mode ==1)

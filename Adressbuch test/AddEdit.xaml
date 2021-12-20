@@ -20,7 +20,7 @@
             <Image x:Name="img" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" MouseLeftButtonDown="Image_MouseLeftButtonDown" Source="Screenshot 2021-12-15 091143.png" />
             <!--<Label Content="Bild" Height="200" FontSize="30"  />-->
             <StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="2">
-                <Label Content="Nickname/KundenNr."/>
+                <Label x:Name="NickLabel" Content="Nickname/KundenNr."/>
                 <TextBox x:Name="NickNo" Text="Nick/KundenNr."/>
                 <Label Content="Vorname"/>
                 <TextBox x:Name="FirstName" Text="Name"/>
