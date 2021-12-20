@@ -98,6 +98,15 @@ namespace Adressbuch_test
                 TheGrid.Content = ppl;
             }
         }
+
+        private void SrchEnter(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                calendar = 3;
+                src.SearchFunktion(ListNames, TxtSearch.Text);
+            }
+        }
     }
 }
 

@@ -8,8 +8,8 @@
              d:DesignHeight="450" d:DesignWidth="800" ContextMenuClosing="NoCal">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition />
         </Grid.RowDefinitions>
         <Viewbox Grid.Row="0">
             <Calendar HorizontalAlignment="Center" VerticalAlignment="Center" />

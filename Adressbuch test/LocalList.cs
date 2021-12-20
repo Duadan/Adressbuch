@@ -147,9 +147,11 @@ namespace Adressbuch_test
                                 noRepeat = true;
                             }
                         }
-                        if(noRepeat==true)
-                        ListNames.Items.Add(a[0]);
-                        tmp.Add(a);
+                        if (noRepeat == true)
+                        {
+                            ListNames.Items.Add(a[0]);
+                            tmp.Add(a);
+                        }
                     }
                 }
             }

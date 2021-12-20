@@ -13,9 +13,9 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition Height="100"/>
-                <RowDefinition/>
+                <RowDefinition Height="1.75*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1.75*"/>
             </Grid.RowDefinitions>
             <Image x:Name="img" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" MouseLeftButtonDown="Image_MouseLeftButtonDown" Source="Screenshot 2021-12-15 091143.png" />
             <!--<Label Content="Bild" Height="200" FontSize="30"  />-->
