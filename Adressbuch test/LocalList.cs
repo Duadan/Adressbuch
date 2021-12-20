@@ -43,32 +43,55 @@ namespace Adressbuch_test
         public void AddToList(string[] a) //stringarray= nick; vorname; name; Straße; Stadt; PLZ; Tel.; Email; Bday;DaysToBday
         {
             contacts.Add(a);
+            tmp.Add(a);
+            five.Add(a);
         }
-        public void DelFromList(int index) //index=Listboxindex
+        public void DelFromList(string index) //index=Listboxindex
         {
             try
             {
-                contacts.RemoveAt(index);
+                //contacts.RemoveAt(index);
+                foreach(string[]a in contacts)
+                {
+                    if (index == a[0])
+                    {
+                        contacts.Remove(a);
+                    }
+                }
             }
             catch (Exception o)
             {
                 MessageBox.Show(o.Message+contacts.Count+index, "Fehler", MessageBoxButton.OK);
             }
-            SaveStuff();
         }
-        public void EditInList(string[] data, int index, ListBox ListNames)
+        public void EditInList(string[] data, int index, ListBox ListNames, int window)
         {
-            contacts.RemoveAt(index);
-            contacts.Add(data);
+            if (window == 2)
+            {
+                string[] a = ListNames.SelectedItem.ToString().Split(' ');
+                DelFromList(a[1]);
+            }
+            else
+            {
+                DelFromList(ListNames.SelectedItem.ToString());
+            }
+            AddToList(data);
             ListNames.Items.RemoveAt(index);
-            ListNames.Items.Add(data[0]);
-            SaveStuff();
+            if (window == 2)
+            {
+                ListNames.Items.Add(data[8]+" "+data[0]);
+            }
+            else
+            {
+                ListNames.Items.Add(data[0]);
+            }
         }
         public void CalenderDiff(ListBox ListNames)
         {
             DateTime today = DateTime.Today;
             TimeSpan time;
             ListNames.Items.Clear();
+
             try
             {
                 foreach (string[] i in contacts)
@@ -104,25 +127,37 @@ namespace Adressbuch_test
         }
         public void SearchFunktion(ListBox ListNames, string srchTxt)
         {
+            bool noRepeat=true;
             tmp.Clear();
             ListNames.Items.Clear();
-            using (StreamReader reader = File.OpenText(filepath))
+            foreach(string[] a in contacts)
             {
-                string read;
-                 while((read=reader.ReadLine()) != null)
+                foreach(string b in a)
                 {
-                    string[] ready = read.Split(';');
-                    foreach (string s in ready)
+                    if (b.ToLower().Contains(srchTxt.ToLower()))
                     {
-                        if (srchTxt.ToLower() == s.ToLower())
+                        foreach(string c in ListNames.Items)
                         {
-                            tmp.Add(ready);
-                            ListNames.Items.Add(ready[0]);
+                            if (a[0] == c)
+                            {
+                                noRepeat = false;
+                            }
+                            else
+                            {
+                                noRepeat = true;
+                            }
                         }
+                        if(noRepeat==true)
+                        ListNames.Items.Add(a[0]);
+                        tmp.Add(a);
                     }
                 }
             }
         }
+        //public void ShowBDay()
+        //{
+        //    if()
+        //}
         public void SaveStuff()
         {
             File.Delete(filepath);

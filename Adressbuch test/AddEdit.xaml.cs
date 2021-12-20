@@ -44,27 +44,42 @@ namespace Adressbuch_test
             }
             if (index >= 0)
             {
-                NickNo.Text = src.contacts[index][0];
-                FirstName.Text = src.contacts[index][1];
-                NameB.Text = src.contacts[index][2];
-                Street.Text = src.contacts[index][3];
-                Town.Text = src.contacts[index][4];
-                PLZ.Text = src.contacts[index][5];
-                Tel.Text = src.contacts[index][6];
-                Mail.Text = src.contacts[index][7];
-                BDate.Text = src.contacts[index][8];
-                if (src.contacts[index].Length >= 11)
+                string a = ListNames.SelectedItem.ToString();
+                if (Mode == 2)
                 {
-                    if (src.contacts[index][10] != "")
+                    a = a.Split(' ')[1];
+                }
+                foreach (string[] arrg in src.contacts)
+                {
+                    if (arrg[0] == a)
                     {
                         try
                         {
-                            img.Source = new BitmapImage(new Uri(src.contacts[index][10]));
+                            NickNo.Text = arrg[0];
+                            FirstName.Text = arrg[1];
+                            NameB.Text = arrg[2];
+                            Street.Text = arrg[3];
+                            Town.Text = arrg[4];
+                            PLZ.Text = arrg[5];
+                            Tel.Text = arrg[6];
+                            Mail.Text = arrg[7];
+                            BDate.Text = arrg[8];
+                            if (arrg.Length >= 11)
+                            {
+                                if (arrg[10] != "")
+                                {
+                                    try
+                                    {
+                                        img.Source = new BitmapImage(new Uri(arrg[10]));
+                                    }
+                                    catch (Exception f)
+                                    {
+                                        MessageBox.Show(f.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
+                                    }
+                                }
+                            }
                         }
-                        catch (Exception f)
-                        {
-                            MessageBox.Show(f.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
-                        }
+                        catch { }
                     }
                 }
             }
@@ -134,7 +149,10 @@ namespace Adressbuch_test
                 if (isNumberT == isNumberP == isNumberD == true && isEmail == 2)
                 {
                     Source.AddToList(ppls.Split(';'));
-                    ListNames.Items.Add(ppls.Split(';')[0]);
+                    if (Mode ==1)
+                    {
+                        ListNames.Items.Add(ppls.Split(';')[0]);
+                    }
 
                     using (StreamWriter writer = File.AppendText(filepath))
                     {
@@ -150,7 +168,7 @@ namespace Adressbuch_test
             }
             else if (isNumberT == isNumberP == isNumberD == true && Index >= 0 && isEmail == 2)
             {
-                Source.EditInList(ppls.Split(';'), Index, ListNames);
+                Source.EditInList(ppls.Split(';'), Index, ListNames,Mode);
                 People edit = new People(Source, ListNames, 1);
                 AddEditCtrl.Content = edit;
             }

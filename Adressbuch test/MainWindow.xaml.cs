@@ -19,21 +19,22 @@ namespace Adressbuch_test
     /// <summary>
     /// Interaktionslogik für MainWindow.xaml
     /// </summary>
-    /// schön machen
+    /// löschen bearbeiten double-checken
 
     public partial class MainWindow : Window
     {
-        LocalList src = new LocalList();
+        public LocalList src = new LocalList();
         private int calendar;
+        private People ppl;
 
         public MainWindow()
         {
             InitializeComponent();
-            Kalendar cal = new Kalendar();
-            TheGrid.Content = cal;
             calendar = 2;
             src.MakeList();
             src.CalenderDiff(ListNames);
+            Kalendar cal = new Kalendar(src);
+            TheGrid.Content = cal;
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
@@ -50,7 +51,7 @@ namespace Adressbuch_test
                 MessageBoxResult erm = MessageBox.Show("Möchten sie den Eintrag wirklich löschen?", "Löschen", button: MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (erm == MessageBoxResult.Yes)
                 {
-                    src.DelFromList(ListNames.SelectedIndex);
+                    src.DelFromList(ppl.NickL.Content.ToString());
                     ListNames.Items.Remove(ListNames.SelectedItem);
                 }
             }
@@ -63,9 +64,9 @@ namespace Adressbuch_test
         private void BtnDate_Click(object sender, RoutedEventArgs e)
         {
             calendar = 2;
-            Kalendar cal = new Kalendar();
-            TheGrid.Content = cal;
             src.CalenderDiff(ListNames);
+            Kalendar cal = new Kalendar(src);
+            TheGrid.Content = cal;
         }
 
         private void BtnSearch_Click(object sender, RoutedEventArgs e)
@@ -93,7 +94,7 @@ namespace Adressbuch_test
         {
             if (ListNames.SelectedIndex >= 0)
             {
-                People ppl = new People(src, ListNames, calendar);
+                ppl = new People(src, ListNames, calendar);
                 TheGrid.Content = ppl;
             }
         }

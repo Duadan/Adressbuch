@@ -20,9 +20,16 @@ namespace Adressbuch_test
     /// </summary>
     public partial class Kalendar : UserControl
     {
-        public Kalendar()
+        private readonly LocalList Source;
+        public Kalendar(LocalList src)
         {
             InitializeComponent();
+            Source = src;
+            if (Convert.ToInt32(Source.five[0][9]) == 0)
+            {
+                ImgBday.Visibility = Visibility.Visible;
+                BDayLabel.Content = Source.five[0][1] + " " + Source.five[0][2];
+            }
         }
 
         private void NoCal(object sender, ContextMenuEventArgs e)

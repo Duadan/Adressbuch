@@ -7,8 +7,16 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" ContextMenuClosing="NoCal">
     <Grid>
-        <Viewbox>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Viewbox Grid.Row="0">
             <Calendar HorizontalAlignment="Center" VerticalAlignment="Center" />
         </Viewbox>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Image Source="Geburtstage.png" x:Name="ImgBday" Visibility="Hidden"/>
+            <Label x:Name="BDayLabel"  />
+        </StackPanel>
     </Grid>
 </UserControl>
