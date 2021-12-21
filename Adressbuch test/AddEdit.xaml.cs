@@ -47,7 +47,16 @@ namespace Adressbuch_test
                 string a = ListNames.SelectedItem.ToString();
                 if (Mode == 2)
                 {
+                    string[] b = a.Split(' ');
                     a = a.Split(' ')[1];
+                    if (b.Length > 2)
+                    {
+                        for (int i = 2; i < b.Length; i++)
+                        {
+                            a += " "+b[i];
+                        }
+                    }
+
                 }
                 foreach (string[] arrg in src.contacts)
                 {
@@ -124,30 +133,52 @@ namespace Adressbuch_test
 
             if (isNumberP == false)
             {
-                PLZ.Text = "Fehler! Bitte eine PostleitZAHL eingeben";
+                PLZ.BorderBrush = Brushes.Red;
+            }
+            else
+            {
+                PLZ.BorderBrush = Brushes.DarkGray;
             }
             if (isNumberT == false)
             {
-                Tel.Text = "Fehler! Bitte eine TelefonNUMMER eingeben";
+                Tel.BorderBrush = Brushes.Red;
+            }
+            else
+            {
+                Tel.BorderBrush = Brushes.DarkGray;
             }
             if (isNumberD == false)
             {
-                BDate.Text = "Bitte gültiges Datum eingeben!";
+                BDate.BorderBrush = Brushes.Red;
+            }
+            else
+            {
+                BDate.BorderBrush = Brushes.DarkGray;
             }
             if (isEmail != 2)
             {
-                Mail.Text = "Ungültig! Bitte eine gültige Emailadresse eingeben.";
+                Mail.BorderBrush = Brushes.Red;
+            }
+            else
+            {
+                Mail.BorderBrush = Brushes.DarkGray;
             }
 
-            else if (Index < 0)
+            if (Index < 0)
             {
                 foreach (string[] repeat in Source.contacts)
                 {
                     if (NickNo.Text == repeat[0])
                     {
-                        NickNo.Text = "dieser Kontakt existiert bereits, zum bearbeiten Kontakt auswählen und bearbeiten";
+                        NickDbl.Content = "dieser Kontakt existiert bereits!";
                         isNew = false;
+                        NickNo.BorderBrush = Brushes.Red;
                     }
+                }
+                if (isNew)
+                {
+                    NickDbl.Content = "";
+                    NickNo.BorderBrush = Brushes.DarkGray;
                 }
                 if (isNumberT == isNumberP == isNumberD ==isNew== true && isEmail == 2)
                 {

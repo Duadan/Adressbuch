@@ -32,6 +32,7 @@ namespace Adressbuch_test
             this.ListNames = ListNames;
             Cal = mode;
             string[] tmp;
+            Adress.Content = "Straße:\nOrt:\nPLZ:";
             if (ListNames.SelectedItem == null)
             {
                 ListNames.SelectedIndex = 0;
@@ -47,6 +48,7 @@ namespace Adressbuch_test
                     AdressL.Content = tmp[3] + "\n" + tmp[4] + "\n" + tmp[5];
                     TelNrL.Content = tmp[6];
                     EmailL.Content = tmp[7];
+                    BDay.Content = tmp[8];
                     try
                     {
                         Pic.Source = new BitmapImage(new Uri(tmp[10]));
@@ -63,6 +65,7 @@ namespace Adressbuch_test
                     AdressL.Content = tmp[3] + "\n" + tmp[4] + "\n" + tmp[5];
                     TelNrL.Content = tmp[6];
                     EmailL.Content = tmp[7];
+                    BDay.Content=tmp[8];
                     try
                     {
                         Pic.Source = new BitmapImage(new Uri(tmp[10]));
@@ -78,6 +81,7 @@ namespace Adressbuch_test
                     AdressL.Content = tmp[3] + "\n" + tmp[4] + "\n" + tmp[5];
                     TelNrL.Content = tmp[6];
                     EmailL.Content = tmp[7];
+                    BDay.Content = tmp[8];
                     try
                     {
                         Pic.Source = new BitmapImage(new Uri(tmp[10]));

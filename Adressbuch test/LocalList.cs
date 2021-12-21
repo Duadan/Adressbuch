@@ -50,18 +50,17 @@ namespace Adressbuch_test
         {
             try
             {
-                //contacts.RemoveAt(index);
-                foreach(string[]a in contacts)
+                for (int i = 0; i < contacts.Count(); i++)
                 {
-                    if (index == a[0])
+                    if (index == contacts[i][0])
                     {
-                        contacts.Remove(a);
+                        contacts.RemoveAt(i);
                     }
                 }
             }
             catch (Exception o)
             {
-                MessageBox.Show(o.Message+contacts.Count+index, "Fehler", MessageBoxButton.OK);
+                MessageBox.Show(o.Message + contacts.Count + index, "Fehler", MessageBoxButton.OK);
             }
         }
         public void EditInList(string[] data, int index, ListBox ListNames, int window)
@@ -119,10 +118,17 @@ namespace Adressbuch_test
                 MessageBox.Show(f.Message+" "+meh , "meh");
             }
             //five = contacts.OrderBy(contact => Convert.ToInt32(contact[9])).Take(5).ToList();
-            five = contacts.OrderBy(contact => Convert.ToInt32(contact[9])).Take(contacts.Count()<5?contacts.Count():5).ToList();
-            for (int i = 0; i < (five.Count()<5?five.Count():5); i++)
+            try
             {
-                ListNames.Items.Add(five[i][8] + " " + five[i][0]);
+                five = contacts.OrderBy(contact => Convert.ToInt32(contact[9])).Take(contacts.Count() < 5 ? contacts.Count() : 5).ToList();
+                for (int i = 0; i < (five.Count() < 5 ? five.Count() : 5); i++)
+                {
+                    ListNames.Items.Add(five[i][8] + " " + five[i][0]);
+                }
+            }
+            catch(Exception f)
+            {
+                MessageBox.Show(f.Message, "Fehler");
             }
         }
         public void SearchFunktion(ListBox ListNames, string srchTxt)
@@ -178,10 +184,7 @@ namespace Adressbuch_test
                 //}
             }
         }
-        //public void ShowBDay()
-        //{
-        //    if()
-        //}
+        
         public void SaveStuff()
         {
             File.Delete(filepath);

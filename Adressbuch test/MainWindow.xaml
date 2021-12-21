@@ -18,26 +18,26 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <StackPanel Background="#6FA8DC" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4">
-            <Label Content="Adressbuch" FontSize="20" HorizontalAlignment="Left" />
-        </StackPanel>
-        <StackPanel Grid.Row="0" Grid.Column="3" Orientation="Horizontal">
-            <TextBox x:Name="TxtSearch" Text="suchen... " Width="100" Height="35" KeyDown="SrchEnter" />
-            <Button x:Name="BtnSearch" Content="Suchen" HorizontalAlignment="Right" Click="BtnSearch_Click" Height="35"></Button>
+        <StackPanel Background="#6FA8DC" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" />
+        <Label Content="Adressbuch" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Margin="20,0,0,0"/>
+        <StackPanel Grid.Row="0" Grid.Column="3" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Label Content="Suche:" VerticalAlignment="Center"/>
+            <TextBox x:Name="TxtSearch" Width="100" Height="25" KeyDown="SrchEnter" ToolTip="Suche mit Enter bestätigen" />
+            <Button x:Name="BtnSearch" Content="Go" HorizontalAlignment="Right" Click="BtnSearch_Click" Height="25" ToolTip="Suche starten"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.RowSpan="3" Grid.Column="0">
             <StackPanel Orientation="Horizontal" Height="35">
                 <ToolBar>
-                    <Button x:Name="BtnPpl" Click="BtnPpl_Click">
+                    <Button x:Name="BtnPpl" Click="BtnPpl_Click" ToolTip="Alle Kontakte anzeigen">
                         <Image Source="MicrosoftTeams-image.png" />
                     </Button>
-                    <Button x:Name="BtnDate" Click="BtnDate_Click">
+                    <Button x:Name="BtnDate" Click="BtnDate_Click" ToolTip="Kalender anzeigen">
                         <Image Source="Geburtstage.png"/>
                     </Button>
-                    <Button x:Name="BtnAdd" Click="BtnAdd_Click">
+                    <Button x:Name="BtnAdd" Click="BtnAdd_Click" ToolTip="Kontakt hinzufügen">
                         <Image Source="hinzufügen.png"/>
                     </Button>
-                    <Button x:Name="BtnDel" Click="BtnDel_Click">
+                    <Button x:Name="BtnDel" Click="BtnDel_Click" ToolTip="Ausgeählten Kontakt löschen">
                         <Image Source="Löschen.png" />
                     </Button>
                 </ToolBar>

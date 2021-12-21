@@ -12,21 +12,47 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="2*"/>
-
+                <ColumnDefinition Width="0.04*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition Height="0.05*"/>
             </Grid.RowDefinitions>
             <Image x:Name="Pic" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0"/>
-            <Label x:Name="NickL" Content="Nick" Grid.Row="0" Grid.Column="1" VerticalAlignment="Top"/>
-            <Label x:Name="NameL" Content="Name" Grid.Row="0" Grid.Column="1" VerticalAlignment="Bottom"/>
-            <Label x:Name="FirstL" Content="Vorname" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center"/>
-            <Label x:Name="AdressL" Content="Straße \nOrt\nPLZ" Grid.Row="2" Grid.Column="0" VerticalAlignment="Top"/>
-            <Label x:Name="TelNrL" Content="Tel." Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
-            <Label x:Name="EmailL" Content="Email" Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom"/>
-            <Button x:Name="Edit" Content="Bearbeiten" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="2" Click="Edit_Click"/>
+            <StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Center">
+            <Label x:Name="NickL" Content="Nick" Grid.Row="0" Grid.Column="1" FontSize="15"/>
+                <Label/>
+                <StackPanel Orientation="Horizontal">
+                    <Label x:Name="FirstL" Content="Vorname" Grid.Row="0" Grid.Column="1" FontSize="15"/>
+                    <Label x:Name="NameL" Content="Name" Grid.Row="0" Grid.Column="1" FontSize="15"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Geburtstag:"/>
+                    <Label x:Name="BDay" Content="Geburtsdatum" Grid.Row="1" Grid.Column="1"/>
+                </StackPanel>
+            </StackPanel>
+                <Grid Grid.Row="2" Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.25*"/>
+                    <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="2">
+                    <Label x:Name="AdressL" Content="Straße \nOrt\nPLZ" />
+                    <Label x:Name="TelNrL" Content="Tel." />
+                    <Label x:Name="EmailL" Content="Email" />
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <Label x:Name="Adress"/>
+                    <Label Content="Telefon:"/>
+                    <Label Content="Email:"/>
+                </StackPanel>
+            </Grid>
+            <Button x:Name="Edit" Height="45" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="2" Click="Edit_Click" ToolTip="Bearbeiten">
+                <Image Source="bearbeiten.png"/>
+            </Button>
         </Grid>
     </ContentControl>
 </UserControl>

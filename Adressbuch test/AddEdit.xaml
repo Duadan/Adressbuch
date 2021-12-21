@@ -11,50 +11,58 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
+                <ColumnDefinition Width="0.025*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1.75*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1.75*"/>
             </Grid.RowDefinitions>
-            <Image x:Name="img" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" MouseLeftButtonDown="Image_MouseLeftButtonDown" Source="Screenshot 2021-12-15 091143.png" />
+            <Image x:Name="img" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" MouseLeftButtonDown="Image_MouseLeftButtonDown" Source="Screenshot 2021-12-15 091143.png" ToolTip="Klicken um Bild einzufügen" />
             <!--<Label Content="Bild" Height="200" FontSize="30"  />-->
             <StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="2">
-                <Label x:Name="NickLabel" Content="Nickname/KundenNr."/>
-                <TextBox x:Name="NickNo" Text="Nick/KundenNr."/>
+                <StackPanel Orientation="Horizontal">
+                    <Label x:Name="NickLabel" Content="Nickname/KundenNr."/>
+                    <Label x:Name="NickDbl"/>
+                </StackPanel>
+                <TextBox x:Name="NickNo" BorderBrush="DarkGray" ToolTip="Muss eindeutig Vergeben werden"/>
                 <Label Content="Vorname"/>
-                <TextBox x:Name="FirstName" Text="Name"/>
+                <TextBox x:Name="FirstName" BorderBrush="DarkGray"/>
                 <Label Content="Name"/>
-                <TextBox x:Name="NameB" Text="Nachame" Grid.Column="1" Grid.Row="1"/>
+                <TextBox x:Name="NameB" Grid.Column="1" Grid.Row="1" BorderBrush="DarkGray"/>
                 <Label Content="Geburtsdatum"/>
-                <DatePicker Name="BDate"/>
+                <DatePicker Name="BDate" BorderBrush="DarkGray" ToolTip="dd.mm.yyyy" />
             </StackPanel>
-            <StackPanel Grid.Row="2" Grid.Column="0">
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Straße"/>
-                    <TextBox x:Name="Street" Text="Straße und HausNr"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Ort"/>
-                    <TextBox x:Name="Town" Text="Ortsname"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Postleitzahl"/>
-                    <TextBox x:Name="PLZ" Text="P L Z"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Telefon"/>
-                    <TextBox x:Name="Tel" Text="Nummer"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Email"/>
-                    <TextBox x:Name="Mail" Text="Email@wasauchimmer.eingeben"/>
-                </StackPanel>
-            </StackPanel>
-            <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom">
-                <Button x:Name="Done" Content="Bestätigen" Click="Done_Click"/>
-                <Button x:Name="Cancel" Content="Abbrechen" Click="Cancel_Click"/>
-            </StackPanel>
+            <Grid Grid.Row="2" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0.1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition Height="0.5*"/>
+                </Grid.RowDefinitions>
+                <Label Content="Straße" Grid.Row="1" Grid.Column="0"/>
+                <Label Content="Ort" Grid.Row="2" Grid.Column="0"/>
+                <Label Content="Postleitzahl" Grid.Row="3" Grid.Column="0"/>
+                <Label Content="Telefon" Grid.Row="4" Grid.Column="0"/>
+                <Label Content="Email" Grid.Row="5" Grid.Column="0"/>
+                    <TextBox x:Name="Street" BorderBrush="DarkGray" Grid.Row="1" Grid.Column="1"/>
+                    <TextBox x:Name="Town" BorderBrush="DarkGray" Grid.Row="2" Grid.Column="1"/>
+                    <TextBox x:Name="PLZ" BorderBrush="DarkGray" Grid.Row="3" Grid.Column="1" ToolTip="Bitte eine Zahl eingeben"/>
+                    <TextBox x:Name="Tel" BorderBrush="DarkGray" Grid.Row="4" Grid.Column="1" ToolTip="Bitte eine Zahl eingeben"/>
+                    <TextBox x:Name="Mail" BorderBrush="DarkGray" Grid.Row="5" Grid.Column="1" ToolTip="zumbeispiel@eine.email"/>
+            </Grid>
+            <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" >
+            <Button x:Name="Done" Content="Bestätigen" Click="Done_Click"/>
+            <Button x:Name="Cancel" Content="Abbrechen" Click="Cancel_Click"/>
+        </StackPanel>
         </Grid>
     </ContentControl>
 </UserControl>
