@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("bearbeiten.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("dark.png")]
 
 

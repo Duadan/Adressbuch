@@ -30,14 +30,17 @@ namespace Adressbuch_test
         private int Mode { get; set; }
         private OpenFileDialog Picture { get; set; }
         private string FindPic { get; set; }
+        private bool Dark { get; set; }
 
-        public AddEdit(LocalList src, ListBox listNames, int index, int mode)
+        public AddEdit(LocalList src, ListBox listNames, int index, int mode,bool dark)
         {
             InitializeComponent();
             Mode = mode;
             Source = src;
             ListNames = listNames;
             Index = index;
+            Dark = dark;
+            Darkmode(Dark);
             if (index >= 0 && src.contacts[index].Length >= 11)
             {
                 FindPic = src.contacts[index][10];
@@ -102,7 +105,7 @@ namespace Adressbuch_test
             int isEmail = 0;
             bool isNumberP, isNumberT, isNumberD, isNew=true;
             isNumberP = int.TryParse(PLZ.Text, out int p);
-            isNumberT = int.TryParse(Tel.Text, out int t);
+            isNumberT = Int64.TryParse(Tel.Text, out Int64 t);
             isNumberD = DateTime.TryParse(BDate.Text, out DateTime d);
             foreach (char c in Mail.Text)
             {
@@ -195,7 +198,7 @@ namespace Adressbuch_test
 
                     MessageBox.Show("Kontakt wurde hinzugefügt", "yay", MessageBoxButton.OK, MessageBoxImage.Asterisk);
 
-                    People edit = new People(Source, ListNames, 1);
+                    People edit = new People(Source, ListNames, 1, Dark);
                     AddEditCtrl.Content = edit;
                 }
 
@@ -203,7 +206,7 @@ namespace Adressbuch_test
             else if (isNumberT == isNumberP == isNumberD == true && Index >= 0 && isEmail == 2)
             {
                 Source.EditInList(ppls.Split(';'), Index, ListNames,Mode);
-                People edit = new People(Source, ListNames, 1);
+                People edit = new People(Source, ListNames, 1,Dark);
                 AddEditCtrl.Content = edit;
             }
         }
@@ -224,8 +227,19 @@ namespace Adressbuch_test
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            People edit = new People(Source, ListNames, Mode);
+            People edit = new People(Source, ListNames, Mode, Dark);
             AddEditCtrl.Content = edit;
         }
-    }
+        public void Darkmode(bool dark)
+        {
+            if (dark)
+            {
+                NickLabel.Foreground = NickDbl.Foreground = NameL.Foreground = TelL.Foreground = FirstL.Foreground = StrL.Foreground = TownL.Foreground = PLZL.Foreground = MailL.Foreground = BDateL.Foreground = Brushes.White;
+            }
+            else
+            {
+                NickLabel.Foreground = NickDbl.Foreground = NameL.Foreground = TelL.Foreground = FirstL.Foreground = StrL.Foreground = TownL.Foreground = PLZL.Foreground = MailL.Foreground = BDateL.Foreground = Brushes.Black;
+            }
+        }
+}
 }

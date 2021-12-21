@@ -18,14 +18,14 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <StackPanel Background="#6FA8DC" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" />
-        <Label Content="Adressbuch" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Margin="20,0,0,0"/>
+        <StackPanel x:Name="Head" Background="#6FA8DC" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" />
+        <Label x:Name="TitleL" Content="Adressbuch" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Margin="20,0,0,0"/>
         <StackPanel Grid.Row="0" Grid.Column="3" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Label Content="Suche:" VerticalAlignment="Center"/>
+            <Label x:Name="SrchL" Content="Suche:" VerticalAlignment="Center"/>
             <TextBox x:Name="TxtSearch" Width="100" Height="25" KeyDown="SrchEnter" ToolTip="Suche mit Enter bestätigen" />
             <Button x:Name="BtnSearch" Content="Go" HorizontalAlignment="Right" Click="BtnSearch_Click" Height="25" ToolTip="Suche starten"/>
         </StackPanel>
-        <StackPanel Grid.Row="1" Grid.RowSpan="3" Grid.Column="0">
+        <StackPanel x:Name="ListBack" Grid.Row="1" Grid.RowSpan="3" Grid.Column="0">
             <StackPanel Orientation="Horizontal" Height="35">
                 <ToolBar>
                     <Button x:Name="BtnPpl" Click="BtnPpl_Click" ToolTip="Alle Kontakte anzeigen">
@@ -40,11 +40,14 @@
                     <Button x:Name="BtnDel" Click="BtnDel_Click" ToolTip="Ausgewählten Kontakt löschen">
                         <Image Source="Löschen.png" />
                     </Button>
+                    <Button x:Name="dark" Click="Dark_Click">
+                        <Image Source="dark.png" ToolTip="Darkmode (experimental)" />
+                    </Button>
                 </ToolBar>
             </StackPanel>
             <ListBox x:Name="ListNames" SelectionChanged="ListNames_SelectionChanged"></ListBox>
         </StackPanel>
-        <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="3">
+        <Grid x:Name="ContBack" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="3">
             <ContentControl x:Name="TheGrid"/>
         </Grid>
     </Grid>

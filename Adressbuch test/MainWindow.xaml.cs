@@ -25,7 +25,9 @@ namespace Adressbuch_test
     {
         public LocalList src = new LocalList();
         private int calendar;
-        private People ppl;
+        private People ppl { get; set; }
+        public bool isDark = false;
+        private AddEdit add { get; set; }
 
         public MainWindow()
         {
@@ -39,7 +41,7 @@ namespace Adressbuch_test
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            AddEdit add = new AddEdit(src, ListNames, -1, calendar);
+            add = new AddEdit(src, ListNames, -1, calendar, isDark);
             TheGrid.Content = add;
         }
 
@@ -93,7 +95,7 @@ namespace Adressbuch_test
         {
             if (ListNames.SelectedIndex >= 0)
             {
-                ppl = new People(src, ListNames, calendar);
+                ppl = new People(src, ListNames, calendar,isDark);
                 TheGrid.Content = ppl;
             }
         }
@@ -104,6 +106,51 @@ namespace Adressbuch_test
             {
                 calendar = 3;
                 src.SearchFunktion(ListNames, TxtSearch.Text);
+            }
+        }
+
+        public void Dark_Click(object sender, RoutedEventArgs e)
+        {
+            if (isDark == false)
+            {
+                SolidColorBrush dark = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2F2F2F"));
+                ContBack.Background = dark;
+                Head.Background = Brushes.DarkBlue;
+                ListBack.Background = dark;
+                TitleL.Foreground = Brushes.White;
+                SrchL.Foreground = Brushes.White;
+                ListNames.Background = dark;
+                ListNames.Foreground = Brushes.White;
+                isDark = true;
+            }
+            else if (isDark)
+            {
+                SolidColorBrush bright = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#6FA8DC"));
+                ContBack.Background = Brushes.White;
+                Head.Background = bright;
+                ListBack.Background = Brushes.White;
+                TitleL.Foreground = Brushes.Black;
+                SrchL.Foreground = Brushes.Black;
+                ListNames.Background = Brushes.White;
+                ListNames.Foreground = Brushes.Black;
+                isDark = false;
+                
+            }
+            if (TheGrid.Content == ppl)
+            {
+                if (ppl.PplCtrl.Content == ppl.edit)
+                {
+                    ppl.edit.Darkmode(isDark);
+                }
+                else
+                {
+                    ppl.Darkmode(isDark);
+                }
+                
+            }
+            else if (TheGrid.Content == add)
+            {
+                add.Darkmode(isDark);
             }
         }
     }

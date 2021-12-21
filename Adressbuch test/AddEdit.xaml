@@ -26,11 +26,11 @@
                     <Label x:Name="NickDbl"/>
                 </StackPanel>
                 <TextBox x:Name="NickNo" BorderBrush="DarkGray" ToolTip="Muss eindeutig Vergeben werden"/>
-                <Label Content="Vorname"/>
+                <Label x:Name="FirstL" Content="Vorname"/>
                 <TextBox x:Name="FirstName" BorderBrush="DarkGray"/>
-                <Label Content="Name"/>
+                <Label x:Name="NameL" Content="Name"/>
                 <TextBox x:Name="NameB" Grid.Column="1" Grid.Row="1" BorderBrush="DarkGray"/>
-                <Label Content="Geburtsdatum"/>
+                <Label x:Name="BDateL" Content="Geburtsdatum"/>
                 <DatePicker Name="BDate" BorderBrush="DarkGray" ToolTip="dd.mm.yyyy" />
             </StackPanel>
             <Grid Grid.Row="2" Grid.Column="0">
@@ -48,11 +48,11 @@
                     <RowDefinition/>
                     <RowDefinition Height="0.5*"/>
                 </Grid.RowDefinitions>
-                <Label Content="Straße" Grid.Row="1" Grid.Column="0"/>
-                <Label Content="Ort" Grid.Row="2" Grid.Column="0"/>
-                <Label Content="Postleitzahl" Grid.Row="3" Grid.Column="0"/>
-                <Label Content="Telefon" Grid.Row="4" Grid.Column="0"/>
-                <Label Content="Email" Grid.Row="5" Grid.Column="0"/>
+                <Label x:Name="StrL" Content="Straße" Grid.Row="1" Grid.Column="0"/>
+                <Label x:Name="TownL" Content="Ort" Grid.Row="2" Grid.Column="0"/>
+                <Label x:Name="PLZL" Content="Postleitzahl" Grid.Row="3" Grid.Column="0"/>
+                <Label x:Name="TelL" Content="Telefon" Grid.Row="4" Grid.Column="0"/>
+                <Label x:Name="MailL" Content="Email" Grid.Row="5" Grid.Column="0"/>
                     <TextBox x:Name="Street" BorderBrush="DarkGray" Grid.Row="1" Grid.Column="1"/>
                     <TextBox x:Name="Town" BorderBrush="DarkGray" Grid.Row="2" Grid.Column="1"/>
                     <TextBox x:Name="PLZ" BorderBrush="DarkGray" Grid.Row="3" Grid.Column="1" ToolTip="Bitte eine Zahl eingeben"/>

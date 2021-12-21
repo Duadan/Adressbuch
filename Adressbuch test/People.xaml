@@ -29,7 +29,7 @@
                     <Label x:Name="NameL" Content="Name" Grid.Row="0" Grid.Column="1" FontSize="15"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="Geburtstag:"/>
+                    <Label x:Name="BdayL" Content="Geburtstag:"/>
                     <Label x:Name="BDay" Content="Geburtsdatum" Grid.Row="1" Grid.Column="1"/>
                 </StackPanel>
             </StackPanel>
@@ -45,8 +45,8 @@
                 </StackPanel>
                 <StackPanel Grid.Column="1" Grid.ColumnSpan="2">
                     <Label x:Name="Adress"/>
-                    <Label Content="Telefon:"/>
-                    <Label Content="Email:"/>
+                    <Label x:Name="LLTel" Content="Telefon:"/>
+                    <Label x:Name="LLMail" Content="Email:"/>
                     <Label x:Name="EmailL" Content="Email" />
                 </StackPanel>
             </Grid>

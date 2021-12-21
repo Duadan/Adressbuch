@@ -25,13 +25,17 @@ namespace Adressbuch_test
         private ListBox ListNames { get; set; }
         private int index = 0;
         private int Cal { get; set; }
-        public People(LocalList src, ListBox ListNames, int mode)
+        private bool Dark { get; set; }
+        public AddEdit edit { get; set; }
+        public People(LocalList src, ListBox ListNames, int mode, bool dark)
         {
             InitializeComponent();
+            
             Source = src;
             this.ListNames = ListNames;
             Cal = mode;
             string[] tmp;
+            Dark = dark;
             Adress.Content = "Straße:\nOrt:\nPLZ:";
             if (ListNames.SelectedItem == null)
             {
@@ -41,6 +45,7 @@ namespace Adressbuch_test
             switch (mode)
             {
                 case 1:
+                    Darkmode(Dark);
                     tmp = src.contacts[index];
                     NickL.Content = tmp[0];
                     FirstL.Content = tmp[1];
@@ -58,6 +63,7 @@ namespace Adressbuch_test
 
 
                 case 2:
+                    Darkmode(Dark);
                     tmp = src.five[index];
                     NickL.Content = tmp[0];
                     FirstL.Content = tmp[1];
@@ -74,6 +80,7 @@ namespace Adressbuch_test
                     break;
 
                 case 3:
+                    Darkmode(Dark);
                     tmp = src.tmp[index];
                     NickL.Content = tmp[0];
                     FirstL.Content = tmp[1];
@@ -93,8 +100,22 @@ namespace Adressbuch_test
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            AddEdit edit = new AddEdit(Source, ListNames, index, Cal);
+            edit = new AddEdit(Source, ListNames, index, Cal, Dark);
             PplCtrl.Content = edit;
+        }
+        public void Darkmode(bool dark)
+        {
+            Dark = dark;
+            if (dark)
+            {
+                NickL.Foreground = FirstL.Foreground = NameL.Foreground = TelNrL.Foreground = AdressL.Foreground = EmailL.Foreground = BDay.Foreground = Brushes.White;
+                BdayL.Foreground = LLMail.Foreground = LLTel.Foreground =Adress.Foreground= Brushes.White;
+            }
+            else
+            {
+                NickL.Foreground = FirstL.Foreground = NameL.Foreground = TelNrL.Foreground = AdressL.Foreground = EmailL.Foreground = BDay.Foreground = Brushes.Black;
+                BdayL.Foreground = LLMail.Foreground = LLTel.Foreground = Adress.Foreground = Brushes.Black;
+            }
         }
     }
 }

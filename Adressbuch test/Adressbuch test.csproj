@@ -134,5 +134,8 @@
   <ItemGroup>
     <Resource Include="bearbeiten.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="dark.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
