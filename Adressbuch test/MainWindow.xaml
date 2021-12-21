@@ -37,7 +37,7 @@
                     <Button x:Name="BtnAdd" Click="BtnAdd_Click" ToolTip="Kontakt hinzufügen">
                         <Image Source="hinzufügen.png"/>
                     </Button>
-                    <Button x:Name="BtnDel" Click="BtnDel_Click" ToolTip="Ausgeählten Kontakt löschen">
+                    <Button x:Name="BtnDel" Click="BtnDel_Click" ToolTip="Ausgewählten Kontakt löschen">
                         <Image Source="Löschen.png" />
                     </Button>
                 </ToolBar>
